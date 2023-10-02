@@ -1,4 +1,4 @@
-const cron = require('node-cron');
+// const cron = require('node-cron');
 const { bot } = require('./config-telegram.bot.js');
 const jwt = require('jsonwebtoken');
 const { accessBot } = require('./config-shitcoinhq-access.bot.js');
@@ -22,14 +22,14 @@ marketSummaryCommandHandler(bot);
 
 
 // Scheduler function to run daily at 9 AM (UK is +1)
-cron.schedule('0 8 * * *', async () => {
-    try {
-        await getAndPostCoins(config.TELEGRAM_CHAT_ID, null, 'marketSummary');
-        await getAndPostCoins(-1001803361016, null, 'marketSummary'); // -1001803361016 = Insomnia Beta Discussion Group (single)
-    } catch (err) {
-        console.error('Error while fetching and posting coins:', err);
-    }
-});
+// cron.schedule('0 8 * * *', async () => {
+//     try {
+//         await getAndPostCoins(config.TELEGRAM_CHAT_ID, null, 'marketSummary');
+//         await getAndPostCoins(-1001803361016, null, 'marketSummary'); // -1001803361016 = Insomnia Beta Discussion Group (single)
+//     } catch (err) {
+//         console.error('Error while fetching and posting coins:', err);
+//     }
+// });
 
 
 // Scheduler function to run daily at 5 PM
