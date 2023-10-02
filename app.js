@@ -64,6 +64,28 @@ app.post('/login', async (req, res) => {
     res.sendStatus(200);
 });
 
+app.post('/verify', (req, res) => {
+
+    console.log('Received a request to /verify');
+    const token = req.body.token;
+
+    jwt.verify(token, secretKey, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ message: 'Token verification failed' });
+        }
+        // Send back the decoded information
+        res.json(decoded);
+        // Log 
+        console.log('Sucessfully decoded token');
+        // Tell the user they have logged in, lolz
+        // const options = { disable_web_page_preview: true };
+        // accessBot.sendMessage(chatId, `👋 Login to your Shitcoin HQ account detected. Hopefully this was you - if not, nae luck pal! 💩`, options)
+        //     .catch(err => {
+        //         console.error('Error sending message:', err);
+        //     });
+    });
+});
+
 // Start the HTTP server and listen on the specified port
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
