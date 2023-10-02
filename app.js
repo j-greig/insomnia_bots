@@ -28,13 +28,13 @@ const secretKey = process.env.JWT_SECRET_KEY;
 // Use express.json() middleware for JSON parsing
 app.use(express.json());
 
-// Define a route to handle incoming POST requests to /snoop
-app.post('/app', (req, res) => {
+// Define a route to handle incoming POST requests to /login
+app.post('/login', (req, res) => {
     // Parse and log the incoming data payload
     console.log('Received data:');
     console.log(req.body);
 
-    const textAfterSnoop = req.body.message.text.replace(/^\/app\s+/, '') ?? 'n/a';
+    const textAfterSnoop = req.body.message.text.replace(/^\/login\s+/, '') ?? 'n/a';
     const chatId = req.body.message.chat.id ?? 'n/a';
     const userId = req.body.message.from.id;
     const username = req.body.message.from.username;
