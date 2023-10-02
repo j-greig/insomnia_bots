@@ -71,6 +71,9 @@ app.post('/verify', (req, res) => {
 
     jwt.verify(token, secretKey, (err, decoded) => {
         if (err) {
+            if (err.name === 'TokenExpiredError') {
+                return res.status(401).json({ message: 'Token has expired' });
+            }
             return res.status(401).json({ message: 'Token verification failed' });
         }
         // Send back the decoded information
