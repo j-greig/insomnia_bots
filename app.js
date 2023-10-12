@@ -49,7 +49,8 @@ app.post('/login', async (req, res) => {
 
         if (plan_id === 2 || plan_id === 3) {
             // Send login link to paid subscriber :)
-            const token = jwt.sign({ username }, secretKey);
+            const tokenPayload = { username, plan_id };  
+            const token = jwt.sign(tokenPayload, secretKey);
             const options = { disable_web_page_preview: true };
             accessBot.sendMessage(chatId, `Here's the login link you requested:\nhttps://www.insomniahq.xyz/login/?auth=${token}`, options);
         } else {
@@ -76,7 +77,7 @@ app.post('/verify', (req, res) => {
         // Send back the decoded information
         res.json(decoded);
         // Log 
-        console.log('Sucessfully decoded token');
+        console.log('Successfully decoded token:', decoded);  // Log the decoded token (remove in production)
         // Tell the user they have logged in, lolz
         // const options = { disable_web_page_preview: true };
         // accessBot.sendMessage(chatId, `👋 Login to your Shitcoin HQ account detected. Hopefully this was you - if not, nae luck pal! 💩`, options)
