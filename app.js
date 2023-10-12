@@ -67,14 +67,9 @@ app.post('/login', async (req, res) => {
                 ]
             });
             // Send login link to paid subscriber :)
-<<<<<<< HEAD
             const tokenPayload = { username, plan_id };  
             const token = jwt.sign(tokenPayload, secretKey);
             const options = { disable_web_page_preview: true };
-=======
-            const token = jwt.sign({ username }, secretKey);
-            const options = { disable_web_page_preview: true, reply_markup: replyMarkupWithLoginButton };
->>>>>>> d6af394fddcedc4393391a5e2928eeaf11257032
             accessBot.sendMessage(chatId, `Here's the login link you requested:\nhttps://www.insomniahq.xyz/login/?auth=${token}`, options);
         } else {
             accessBot.sendMessage(chatId, "Sorry, it looks like you're not a paid subscriber to Insomnia Live.");
