@@ -43,15 +43,38 @@ app.post('/login', async (req, res) => {
     const apiKey = process.env.TGMEMBERSHIP_API_KEY;
     const apiUrl = `https://api.tgmembership.com/bot6448465749/${apiKey}/getSubscribers?user_id=${userId}`;
 
+    const loginUrl = {
+        // url: `https://www.insomniahq.xyz/login/?auth=${token}`,
+        url: `https://www.insomniahq.xyz/login/`,
+        // ... other LoginUrl parameters
+    };
+
     try {
         const response = await axios.get(apiUrl);
         const { plan_id } = response.data.result;
 
         if (plan_id === 2 || plan_id === 3) {
+            const replyMarkupWithLoginButton = JSON.stringify({
+                inline_keyboard: [
+                    [{
+                        text: 'Login to Insomnia dasbboard',
+                        // url: `https://www.insomniahq.xyz/login/?auth=${token}`,
+                        login_url: loginUrl,
+                        bot_username: 'InsomniaAccessBot',
+                        request_write_access: 'True',
+                        // Add any other LoginUrl parameters you need
+                    }]
+                ]
+            });
             // Send login link to paid subscriber :)
+<<<<<<< HEAD
             const tokenPayload = { username, plan_id };  
             const token = jwt.sign(tokenPayload, secretKey);
             const options = { disable_web_page_preview: true };
+=======
+            const token = jwt.sign({ username }, secretKey);
+            const options = { disable_web_page_preview: true, reply_markup: replyMarkupWithLoginButton };
+>>>>>>> d6af394fddcedc4393391a5e2928eeaf11257032
             accessBot.sendMessage(chatId, `Here's the login link you requested:\nhttps://www.insomniahq.xyz/login/?auth=${token}`, options);
         } else {
             accessBot.sendMessage(chatId, "Sorry, it looks like you're not a paid subscriber to Insomnia Live.");
