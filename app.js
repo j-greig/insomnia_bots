@@ -62,7 +62,7 @@ app.post('/login', async (req, res) => {
                         login_url: loginUrl,
                         url: 'https://www.insomniahq.xyz/login',
                         bot_username: 'InsomniaAccessBot',
-                        request_write_access: True,
+                        request_write_access: 'True',
                         // Add any other LoginUrl parameters you need
                     }]
                 ]
