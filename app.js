@@ -57,12 +57,11 @@ app.post('/login', async (req, res) => {
             const replyMarkupWithLoginButton = JSON.stringify({
                 inline_keyboard: [
                     [{
-                        text: 'Login',
+                        text: 'Login to Insomnia dasbboard',
                         // url: `https://www.insomniahq.xyz/login/?auth=${token}`,
                         login_url: loginUrl,
                         bot_username: 'InsomniaAccessBot',
-                        request_write_access: true,
-                        forward_text: 'Login to Insomnia'
+                        request_write_access: True,
                         // Add any other LoginUrl parameters you need
                     }]
                 ]
