@@ -43,11 +43,15 @@ app.post('/login', async (req, res) => {
     const apiKey = process.env.TGMEMBERSHIP_API_KEY;
     const apiUrl = `https://api.tgmembership.com/bot6448465749/${apiKey}/getSubscribers?user_id=${userId}`;
 
-    const loginUrl = {
-        // url: `https://www.insomniahq.xyz/login/?auth=${token}`,
-        url: `https://www.insomniahq.xyz/login/`,
-        // ... other LoginUrl parameters
-    };
+    var loginUrl = 'https://www.insomniahq.xyz/login/?';
+    loginUrl += 'id=' + encodeURIComponent(user.id);
+    loginUrl += '&username=' + encodeURIComponent(user.username || '');
+
+    // const loginUrl = {
+    //     // url: `https://www.insomniahq.xyz/login/?auth=${token}`,
+    //     url: `https://www.insomniahq.xyz/login/`,
+    //     // ... other LoginUrl parameters
+    // };
 
     try {
         const response = await axios.get(apiUrl);
@@ -60,9 +64,9 @@ app.post('/login', async (req, res) => {
                         text: 'Login to Insomnia dasbboard',
                         // url: `https://www.insomniahq.xyz/login/?auth=${token}`,
                         login_url: loginUrl,
-                        url: 'https://www.insomniahq.xyz/login',
+                        // url: 'https://www.insomniahq.xyz/login',
                         bot_username: 'InsomniaAccessBot',
-                        request_write_access: 'True',
+                        request_write_access: true,
                         // Add any other LoginUrl parameters you need
                     }]
                 ]
