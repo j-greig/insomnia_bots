@@ -52,7 +52,8 @@ app.post('/login', async (req, res) => {
                 inline_keyboard: [
                     [{
                         text: 'Login',
-                        url: `https://www.insomniahq.xyz/login/?auth=${token}`,
+                        // url: `https://www.insomniahq.xyz/login/?auth=${token}`,
+                        url: `https://www.insomniahq.xyz/login/`,
                         bot_username: 'InsomniaAccessBot',
                         request_write_access: true,
                         // Add any other LoginUrl parameters you need
