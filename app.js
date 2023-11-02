@@ -2,6 +2,7 @@
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
 const { accessBot } = require('./config-shitcoinhq-access.bot.js');
+const { insomniaBouncerBot } = require('./config-insomnia-bouncer-bot.js');
 const config = require("./config.js")
 console.log('Starting Insomnia Bot...');
 
@@ -71,6 +72,7 @@ app.post('/login', async (req, res) => {
             const token = jwt.sign(tokenPayload, secretKey);
             const options = { disable_web_page_preview: true };
             accessBot.sendMessage(chatId, `Here's the login link you requested:\nhttps://www.insomniahq.xyz/login/?auth=${token}`, options);
+            insomniaBouncerBot.sendMessage(chatId, `Here's the login link you requested:\nhttps://www.insomniahq.xyz/login/?auth=${token}`, options);
         } else {
             accessBot.sendMessage(chatId, "Sorry, it looks like you're not a paid subscriber to Insomnia Live.");
         }
