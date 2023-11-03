@@ -7,7 +7,6 @@ const config = require("./config.js")
 console.log('Starting Insomnia Bot...');
 
 /////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
 // Create an HTTP server using Express
 // https://docs.tgmembership.com/tgmembership/advanced/custom-commands
 
@@ -71,15 +70,15 @@ app.post('/login', async (req, res) => {
             const tokenPayload = { username, plan_id };  
             const token = jwt.sign(tokenPayload, secretKey);
             const options = { disable_web_page_preview: true };
-            accessBot.sendMessage(chatId, `Here's the login link you requested:\nhttps://www.insomniahq.xyz/login/?auth=${token}`, options);
+            // accessBot.sendMessage(chatId, `Here's the login link you requested:\nhttps://www.insomniahq.xyz/login/?auth=${token}`, options);
             insomniaBouncerBot.sendMessage(chatId, `Here's the login link you requested:\nhttps://www.insomniahq.xyz/login/?auth=${token}`, options);
         } else {
-            accessBot.sendMessage(chatId, "Sorry, it looks like you're not a paid subscriber to Insomnia Live.");
+            insomniaBouncerBot.sendMessage(chatId, "Sorry, it looks like you're not a paid subscriber to Insomnia Live. ");
         }
 
     } catch (err) {
         console.error('API call or something else went wrong:', err);
-        accessBot.sendMessage(chatId, "Sorry, an error occurred while checking your subscription. Please wait a minute and try again.");
+        insomniaBouncerBot.sendMessage(chatId, "Sorry, an error occurred while checking your subscription. Please wait a minute and try again.");
     }
 
     res.sendStatus(200);
